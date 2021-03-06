@@ -3,15 +3,20 @@ package com.example.calculator
 import java.util.Scanner
 
 fun main() {
-    println("Wanna calc something real quick?\n Use 1 for addition;\n" +
-            " 2 for subtraction;\n And 3 for multiplication")
+    println("Wanna calc something real quick?\n" +
+            " Use 1 for addition;\n" +
+            " 2 for subtraction;\n" +
+            " 3 for multiplication\n" +
+            " And 4 for division" +
+            "")
 
     var input = readLine()
 
     when(input) {
-        "1" -> addition()
-        "2" -> subtraction()
-        "3" -> multiplication()
+        "1" -> calc("+")
+        "2" -> calc("-")
+        "3" -> calc("*")
+        "4" -> calc("/")
         else -> {println("Enter a function number!")
             main()
         }
@@ -28,7 +33,7 @@ fun main() {
     }
 }
 
-fun addition (){
+fun calc(operator:String){
     val reader1 = Scanner(System.`in`)
     print("Enter the first number: ")
 
@@ -39,33 +44,13 @@ fun addition (){
 
     var num2:Int = reader2.nextInt()
 
-    println("$num1 + $num2 = " + (num1 + num2))
-}
+    val result:Double = when(operator){
+        "+" -> (num1 + num2).toDouble()
+        "-" -> (num1 - num2).toDouble()
+        "*" -> (num1 * num2).toDouble()
+        "/" -> (num1 / num2).toDouble()
+        else -> 0.0
+    }
 
-fun subtraction(){
-    val reader1 = Scanner(System.`in`)
-    print("Enter the first number: ")
-
-    var num1:Int = reader1.nextInt()
-
-    val reader2 = Scanner(System.`in`)
-    print("Enter the second number: ")
-
-    var num2:Int = reader2.nextInt()
-
-    println("$num1 - $num2 = " + (num1 - num2))
-}
-
-fun multiplication (){
-    val reader1 = Scanner(System.`in`)
-    print("Enter the first number: ")
-
-    var num1:Int = reader1.nextInt()
-
-    val reader2 = Scanner(System.`in`)
-    print("Enter the second number: ")
-
-    var num2:Int = reader2.nextInt()
-
-    println("$num1 * $num2 = " + (num1 * num2))
+    println("$num1 $operator $num2 = " + result)
 }
